@@ -1,0 +1,59 @@
+#
+# relies on the following tasks:
+#
+# oc create -f https://raw.githubusercontent.com/tektoncd/catalog/658c021e86ce45c9396031a98df32ee50d2dc19e/openshift-client/openshift-client-task.yaml
+# oc create -f https://raw.githubusercontent.com/openshift/pipelines-catalog/master/s2i-nodejs/s2i-nodejs-task.yaml
+#
+---
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: microsweeper-deploy-pipeline
+spec:
+  resources:
+  - name: app-git
+    type: git
+  - name: app-image
+    type: image
+  tasks:
+  - name: build
+    taskRef:
+      name: s2i-nodejs
+    params:
+      - name: TLSVERIFY
+        value: "false"
+    resources:
+      inputs:
+      - name: source
+        resource: app-git
+      outputs:
+      - name: image
+        resource: app-image
+  - name: deploy
+    taskRef:
+      name: openshift-client
+    runAfter:
+      - build
+    params:
+    - name: ARGS
+      value: "rollout latest microsweeper"
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: microsweeper-git
+spec:
+  type: git
+  params:
+  - name: url
+    value: https://github.com/jamesfalkner/microsweeper-js
+---
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineResource
+metadata:
+  name: microsweeper-image
+spec:
+  type: image
+  params:
+  - name: url
+    value: image-registry.openshift-image-registry.svc:5000/microsweeper/microsweeper
