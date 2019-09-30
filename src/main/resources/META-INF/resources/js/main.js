@@ -330,18 +330,18 @@ function render() {
 
 function recordScore(name, time, level, won) {
 
-  // let xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
 
-  // xhr.open('POST', '/api/scoreboard');
-  // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  // xhr.onload = function () {
-  //   if (xhr.status === 200 || xhr.status === 204) {
-  //     console.log("request success: " + xhr.responseText);
-  //   }
-  //   else {
-  //     console.log("request fail: " + xhr.status);
-  //   }
-  // };
+  xhr.open('POST', '/api/scoreboard');
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhr.onload = function () {
+    if (xhr.status === 200 || xhr.status === 204) {
+      console.log("request success: " + xhr.responseText);
+    }
+    else {
+      console.log("request fail: " + xhr.status);
+    }
+  };
 
   let score = {
     name: name,
@@ -352,7 +352,7 @@ function recordScore(name, time, level, won) {
 
   addScore(score);
   console.log("recording score: " + JSON.stringify(score));
-  //xhr.send(JSON.stringify(score));
+  xhr.send(JSON.stringify(score));
 
 }
 
