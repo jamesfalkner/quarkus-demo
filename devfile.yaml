@@ -54,38 +54,38 @@ components:
 
 # Custom commands
 commands:
-- name: Build and Run Locally
-  actions:
-    - type: exec
-      component: maven
-      command: mvn clean compile quarkus:dev
-      workdir: “${CHE_PROJECTS_ROOT}/quarkus-demo"
-- name: Debug Quarkus App
-  actions:
-    - type: exec
-      component: maven
-      command: mvn clean compile quarkus:dev
-      workdir: “${CHE_PROJECTS_ROOT}/quarkus-demo"
-- name: debug
-  actions:
-    - type: vscode-launch
-      referenceContent: |
-            {
-              "version": "0.2.0",
-              "configurations": [
-                {
-                  "type": "java",
-                  "request": "attach",
-                  "name": "Attach to App",
-                  "hostName": "localhost",
-                  "port": 5005
-                }
-              ]
-            }
+  - name: Build and Run Locally
+    actions:
+      - type: exec
+        component: maven
+        command: mvn clean compile quarkus:dev
+        workdir: “${CHE_PROJECTS_ROOT}/quarkus-demo"
+  - name: Debug Quarkus App
+    actions:
+      - type: exec
+        component: maven
+        command: mvn clean compile quarkus:dev
+        workdir: “${CHE_PROJECTS_ROOT}/quarkus-demo"
+  - name: debug
+    actions:
+      - type: vscode-launch
+        referenceContent: |
+              {
+                "version": "0.2.0",
+                "configurations": [
+                  {
+                    "type": "java",
+                    "request": "attach",
+                    "name": "Attach to App",
+                    "hostName": "localhost",
+                    "port": 5005
+                  }
+                ]
+              }
 
 
-- id: ms-kubernetes-tools/vscode-kubernetes-tools/latest
-  type: chePlugin
-- id: redhat/vscode-yaml/latest
-  type: chePlugin
+  - id: ms-kubernetes-tools/vscode-kubernetes-tools/latest
+    type: chePlugin
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin
 apiVersion: 1.0.0
