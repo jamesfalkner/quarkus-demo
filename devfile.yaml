@@ -64,14 +64,16 @@ commands:
       - type: exec
         component: maven
         command: mvn clean compile quarkus:dev
-        problemMatcher: []
+        problemMatcher:
+          -
         workdir: ${CHE_PROJECTS_ROOT}/quarkus-demo
   - name: Debug Quarkus App
     actions:
       - type: exec
         component: maven
         command: mvn clean compile quarkus:dev
-        problemMatcher: []
+        problemMatcher:
+          -
         workdir: ${CHE_PROJECTS_ROOT}/quarkus-demo
   - name: debug
     actions:
