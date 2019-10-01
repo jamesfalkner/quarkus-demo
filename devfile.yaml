@@ -42,14 +42,14 @@ components:
     - name: web
       port: 8080
       attributes:
-          discoverable: false
-          public: true
+          discoverable: "false"
+          public: "true"
           protocol: http
     - name: debug
       port: 5005
       attributes:
-          discoverable: false
-          public: false
+          discoverable: "false"
+          public: "false"
           protocol: jdwp
 
 # Custom commands
@@ -68,20 +68,20 @@ commands:
       workdir: “${CHE_PROJECTS_ROOT}/quarkus-demo"
 - name: debug
   actions:
-  - type: vscode-launch
-    referenceContent: |
-          {
-             "version": "0.2.0",
-             "configurations": [
-              {
-                "type": "java",
-                "request": "attach",
-                "name": "Attach to App",
-                "hostName": "localhost",
-                "port": 5005
-              }
-            ]
-          }
+    - type: vscode-launch
+      referenceContent: |
+            {
+              "version": "0.2.0",
+              "configurations": [
+                {
+                  "type": "java",
+                  "request": "attach",
+                  "name": "Attach to App",
+                  "hostName": "localhost",
+                  "port": 5005
+                }
+              ]
+            }
 
 
 - id: ms-kubernetes-tools/vscode-kubernetes-tools/latest
