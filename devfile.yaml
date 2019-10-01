@@ -1,3 +1,4 @@
+apiVersion: 1.0.0
 metadata:
   name: corp-project
 projects:
@@ -51,6 +52,10 @@ components:
           discoverable: "false"
           public: "false"
           protocol: jdwp
+  - id: ms-kubernetes-tools/vscode-kubernetes-tools/latest
+    type: chePlugin
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin
 
 # Custom commands
 commands:
@@ -82,10 +87,3 @@ commands:
                   }
                 ]
               }
-
-
-  - id: ms-kubernetes-tools/vscode-kubernetes-tools/latest
-    type: chePlugin
-  - id: redhat/vscode-yaml/latest
-    type: chePlugin
-apiVersion: 1.0.0
