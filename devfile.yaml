@@ -43,13 +43,13 @@ components:
     - name: web
       port: 8080
       attributes:
-          discoverable: "false"
+          discoverable: "true"
           public: "true"
           protocol: http
     - name: debug
       port: 5005
       attributes:
-          discoverable: "false"
+          discoverable: "true"
           public: "false"
           protocol: jdwp
   - id: ms-kubernetes-tools/vscode-kubernetes-tools/latest
@@ -64,13 +64,15 @@ commands:
       - type: exec
         component: maven
         command: mvn clean compile quarkus:dev
-        workdir: “${CHE_PROJECTS_ROOT}/quarkus-demo"
+        problemMatcher: []
+        workdir: ${CHE_PROJECTS_ROOT}/quarkus-demo
   - name: Debug Quarkus App
     actions:
       - type: exec
         component: maven
         command: mvn clean compile quarkus:dev
-        workdir: “${CHE_PROJECTS_ROOT}/quarkus-demo"
+        problemMatcher: []
+        workdir: ${CHE_PROJECTS_ROOT}/quarkus-demo
   - name: debug
     actions:
       - type: vscode-launch
